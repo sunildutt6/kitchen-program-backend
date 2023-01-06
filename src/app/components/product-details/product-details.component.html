@@ -1,0 +1,14 @@
+<div>
+    <div class="container-fluid m-5">
+        <img src="{{product.imageUrl}}" class="rounded float-start p-2" width="450" alt="{{product.name}}" />
+        <div>
+            <h2>{{product.name}}</h2>
+            <p>{{product.price | currency:"USD"}}</p>
+            <button (click)="addToCart()" class="btn btn-primary btn-sm">Add to cart</button>
+            <hr>
+            <h4>Description</h4>
+            <p>{{product.description}}</p>
+        </div>
+        <a routerLink="/product">Back to products list</a>
+    </div>
+</div>

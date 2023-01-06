@@ -1,0 +1,13 @@
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item m-3" *ngFor="let tempProductCategory of productCategories">
+            <a routerLink="/category/{{tempProductCategory.id}}/{{tempProductCategory.categoryName}}"
+                routerLinkActive="active-link" class="nav-link-active">{{tempProductCategory.categoryName}}</a>
+        </li>
+
+        <app-search></app-search>
+
+
+    </ul>
+
+</div>

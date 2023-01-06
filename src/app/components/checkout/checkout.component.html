@@ -1,0 +1,145 @@
+<div class="m-3">
+
+    <form [formGroup]="checkOutFormGroup" (ngSubmit)="onSubmit()">
+
+        <div formGroupName="customer" class="form-area ">
+            <h3>Customer</h3>
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label>FirstName</label>
+                </div>
+                <div class="col-md-9">
+                    <input formControlName="firstName" type="text">
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                        <div
+                            *ngIf="shippingAddressStreet.errors?.['required'] || shippingAddressStreet.errors?.['notOnlyWhitespace']">
+                            first Name is required
+                        </div>
+
+                        <div *ngIf="shippingAddressStreet.errors?.['minLength']">
+                            must be at in valid firstName
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label>LastName</label>
+                </div>
+                <div class="col-md-9">
+                    <input formControlName="lastName" type="text">
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                        <div *ngIf="lastName.errors?.['required'] || firstName.errors?.['notOnlyWhitespace']"> Last Name
+                            is required
+
+                        </div>
+
+
+                        <div *ngIf="lastName.errors?.['minLength']">
+                            <p> must be at in valid email address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 mb-3">
+                    <label>Email</label>
+                </div>
+                <div class="col-md-9">
+                    <input formControlName="email" type="text">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                        <div *ngIf="email.errors?.['required']">
+                            Email is required
+                        </div>
+                        <div *ngIf="email.errors?.['pattern']">
+                            must be at least 2 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- address -->
+            <div formGroupName="shippingAddress" class="form-area ">
+                <h3>Shipping Address</h3>
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <label>Street</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input formControlName="street" type="text">
+
+                        <div *ngIf="shippingAddressStreet.invalid && (shippingAddressStreet.dirty || shippingAddressStreet.touched)"
+                            class="alert alert-danger">
+                            <div
+                                *ngIf="shippingAddressStreet.errors?.['required'] || shippingAddressStreet.errors?.['notOnlyWhitespace']">
+                                Street
+                                is required
+                            </div>
+
+                            <div *ngIf="shippingAddressStreet.errors?.['minLength']">
+                                must be at in valid street
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 mb-3">
+                            <label>city</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input formControlName="city" type="text">
+                            <div *ngIf="shippingAddressCity.invalid && (shippingAddressCity.dirty || shippingAddressCity.touched)"
+                                class="alert alert-danger">
+                                <div
+                                    *ngIf="shippingAddressCity.errors?.['required'] || shippingAddressCity.errors?.['notOnlyWhitespace']">
+                                    City
+                                    is required
+                                </div>
+
+                                <div *ngIf="shippingAddressCity.errors?.['minLength']">
+                                    must be at in City
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!-- Card -->
+                <div formGroupName="creditCard" class="form-area ">
+                    <h3>Card Information</h3>
+                    <div class="row">
+                        <div class="col-md-2 mb-3">
+                            <label>Card Type</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input formControlName="cardType" type="text">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 mb-3">
+                            <label>Name on Card</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input formControlName="nameonCard" type="text">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="form-area">
+                        <h3>Review Your Order</h3>
+                        <p>Total Quantity: {{totalQuantity}}</p>
+                        <p>Total Price: {{totalPrice | currency}}</p>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Purchase</button>
+            </div>
+        </div>
+    </form>
